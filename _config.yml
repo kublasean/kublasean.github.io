@@ -27,6 +27,11 @@ baseurl: "" # place folder name if the site is served in a subfolder
 twitter_username: seawhaleplusn
 github_username:  kublasean
 
+header_pages:
+  - notes/notes.html
+  - projects/projects.html
+  - about.markdown
+
 # Build settings
 theme: minima
 plugins:

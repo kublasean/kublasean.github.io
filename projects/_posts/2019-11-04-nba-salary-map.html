@@ -1,0 +1,51 @@
+---
+layout: post
+title: "NBA Salary Map"
+extra_stylesheet: "/projects/assets/css/nba_salary_map.css"
+---
+<script src="/projects/assets/resource/d3.min.js"></script>
+<script src="/projects/assets/resource/colors.js"></script>
+<script src="/projects/assets/js/nba_2019_2020_contracts.js"></script>
+<script src="/projects/assets/js/treemap.js"></script>
+
+<h1>Who's on the books? NBA contracts 2019-2025</h1>
+
+<span style="padding-left: 1px;" class="control" onclick="prev_year();">previous</span>
+<h1 style="text-align: center; display: inline-block; padding:0; margin:0;"><b id="year">2019-20</b></h1>
+<span class="control" onclick="next_year();">next</span>
+
+<div class="chart-container">
+    <div class="tooltip">hello there</div>
+    <div id="title_layer"></div>
+    <div id="salary_treemap"></div>
+</div>
+
+<p>
+Each rectangle represents a player and is scaled by that player's contract size for the
+selected year. Players are grouped by their teams, indicated by their color and abbreviation.
+Press <b>previous</b> or <b>next</b> to step through available seasons. Hover (or click on mobile) over a player to 
+see their name and contract in millions or thousands of dollars.
+</p>
+
+<blockquote>
+Note: the scale can change dramatically between years, and this data is from 2019
+</blockquote>
+
+<script>
+var ind = 0;
+var years = ["2019_20","2020_21","2021_22","2022_23","2023_24","2024_25"];
+var chart = create_treemap("#salary_treemap", "#title_layer", GLOBAL_DATA, years[0]);
+function next_year() {
+    ind = (ind + 1) % years.length;
+    chart.data_update(years[ind]);
+    document.getElementById("year").innerText = years[ind].replace("_", "-");
+}
+function prev_year() {
+    ind -= 1;
+    if (ind < 0) {
+        ind = years.length-1;
+    }
+    chart.data_update(years[ind]);
+    document.getElementById("year").innerText = years[ind].replace("_", "-");
+}
+</script>
