@@ -12,7 +12,9 @@ title: "Latest posts"
             {{ post.title | escape }}
         </a>
         </h3>
-        {%- if site.show_excerpts -%}
+        {%- if post.thumb -%}
+            <img class="post-thumb" src="{{ post.thumb | relative_url }}"/>
+        {%- else -%}
             {{ post.excerpt }}
         {%- endif -%}
     </li>

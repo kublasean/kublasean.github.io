@@ -2,8 +2,6 @@
 layout: page
 title: "Projects"
 ---
-<p>Projects listed chronologically go here</p>
-
 <ul class="post-list">
     {%- for post in site.categories.projects -%}
     <li>
@@ -14,8 +12,8 @@ title: "Projects"
             {{ post.title | escape }}
         </a>
         </h3>
-        {%- if site.show_excerpts -%}
-            {{ post.excerpt }}
+        {%- if post.thumb -%}
+            <img class="project-thumb" src="{{ post.thumb | relative_url }}"/>
         {%- endif -%}
     </li>
     {%- endfor -%}

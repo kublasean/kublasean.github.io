@@ -30,7 +30,7 @@ github_username:  kublasean
 header_pages:
   - notes/notes.html
   - projects/projects.html
-  - about.markdown
+  - about.html
 
 # Build settings
 theme: minima
