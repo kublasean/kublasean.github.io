@@ -4,6 +4,10 @@
 
 @import "minima";
 
+.site-header {
+    border-top: none;
+}
+
 .project-thumb {
     object-fit: cover;
     width: 100%;
@@ -31,25 +35,25 @@
 }
 
 .col {
-    vertical-align: top;
+    vertical-align: middle;
     box-sizing: border-box;
     width: 100%;
-    margin: 0;
-    padding: 0;
     display: inline-block;
-    margin-bottom: 34px;
 }
 .col > img {
     width: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin-bottom: $spacing-unit / 2;
 }
 
 @media only screen and (min-width: 768px) {
     .col {
         width: 50%;
+        margin-bottom: $spacing-unit;
     }
-    .col > p {
-        margin: 20px;
+    .leftmost-col {
+        padding-right: $spacing-unit / 2;
+    }
+    .rightmost-col {
+        padding-left: $spacing-unit / 2;
     }
 }
