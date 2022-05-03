@@ -4,10 +4,20 @@
 
 @import "minima";
 
+hr {
+    margin-bottom: $spacing-unit;
+}
+
 .site-header {
     border-top: none;
 }
 
+.more-link {
+    float: right;
+}
+.more-link::after {
+    content: " \21E8"
+}
 .project-thumb {
     object-fit: cover;
     width: 100%;
@@ -22,11 +32,16 @@
     border-left: 5px solid $grey-color-light;
 }
 
+.home-thumb {
+    object-fit: cover;
+    width: 100%;
+    border: 2px solid $text-color
+}
+
 .row {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    display: inline-block;
 }
 .row::after {
     content: "";
@@ -35,7 +50,7 @@
 }
 
 .col {
-    vertical-align: middle;
+    vertical-align: top;
     box-sizing: border-box;
     width: 100%;
     display: inline-block;

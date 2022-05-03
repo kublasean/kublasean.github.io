@@ -6,4 +6,4 @@ tag: thoughts
 ---
 Today is Day Zero of my attempt to create a blog. In fact this post is more of a test than real content you might say...
 
-Here's to hoping it goes well! 
+I am still very much working out how to lay things out. Expect things to look better down the road! 
