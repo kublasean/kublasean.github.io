@@ -1,0 +1,21 @@
+<h2 class="footer-heading">Latest in...</h2>
+<ul class="tags-list" style="margin-bottom: 0;">
+    {%- for tag in page.tags limit:3 -%}
+        <li class="related-tag">{{ tag }}</li>
+    {%- endfor -%}
+</ul>
+<div class="related-area" style="position: relative">
+    {%- for tag in page.tags limit:3 -%}
+        <div id="#{{ tag }}" style="display: none;">
+            <ul>
+            {%- for related_post in site.tags[tag] -%}
+                {%- unless related_post.title == page.title -%}
+                    <li><a href="{{ related_post.url }}">{{ related_post.title }}</a></li>
+                {%- endunless -%}
+            {%- endfor -%}
+            </ul>
+            <a href="/notes#{{ tag }}" class="more-link" style="position: absolute; bottom: 0px; right: 0px;">All {{ tag }}</a>
+        </div>
+    {%- endfor -%}
+</div>
+<script src="/assets/js/show_related_posts.js"></script>
