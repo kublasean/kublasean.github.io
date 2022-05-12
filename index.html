@@ -4,49 +4,53 @@ extra_stylesheet: "/assets/css/home.css"
 ---
 <div class="home">
     <p>
-    Hi I'm Sean!!! This is a site for <a href="/projects">projects</a> I want to share and <a href="/notes">notes</a> on topics related to software development
+    <b>Hi I'm Sean!!!</b> This is a website for <a href="/projects">projects</a> I want to share and <a href="/notes">notes</a> on topics related to software development
     </p>
         
     <p>
-    Enjoy free (wow!!) reference for the quirks of various computer programming languages, frameworks, and platforms as I discover them - straight from my brain
+    Enjoy free (wow!!) reference for the quirks of various computer programming languages, frameworks, and platforms as I discover them
     </p>
     
     <p>
     Interested in hiring me or collaborating on something?  
     <a href="/about">See about me</a>
     </p>
-    
+    <hr class="big-pad">
     <div class="row">
         <div class="col leftmost-col">
-            <h2 class="post-list-heading">Featured projects</h2>
+            <h3>&#9733; Featured projects</h3>
             {%- for post in site.categories.projects -%}
-                <img class="home-thumb" src="{{ post.thumb | relative_url }}"/>
-                <span class="post-meta">{{ post.pitch }}</span>
-                <h3>
-                <a class="post-link" href="{{ post.url | relative_url }}">
-                    {{ post.title | escape }}
-                </a>
+                <div class="featured-project">
+                <h3 style="margin-bottom: 0px;">
+                    <a class="post-link" href="{{ post.url | relative_url }}">
+                        {{ post.title | escape }}
+                    </a>
                 </h3>
-                <hr>
+                <img class="home-thumb" src="{{ post.thumb | relative_url }}"/>
+                <p class="post-pitch">{{ post.pitch }}</p>
+                </div>
             {%- endfor -%}
             <a class="more-link" href="/projects">More projects</a>
         </div><div class="col rightmost-col">
-            <h2 class="post-list-heading">Latest posts</h2>
-            <ul class="post-list">
+            <h3>&#9733; Latest</h3>
+            <hr>
+            <ul class="post-list home-notes-list">
                 {%- for post in site.posts limit:3 -%}
                 <li>
                     {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-                    <span class="post-meta">{{ post.date | date: date_format }}</span>
-                    <h3 style="margin-bottom: 0">
+                    <span class="post-meta">{{ post.date | date: date_format }}&emsp;
+                        {%- if post.tags and post.tags != empty -%}
+                            {%- for tag in post.tags limit:3 -%}
+                                <a class="related-tag" href="/notes#{{ tag }}">{{ tag }}</a>
+                            {%- endfor -%}
+                        {%- endif -%}
+                    </span>
+                    <h3>
                     <a class="post-link" href="{{ post.url | relative_url }}">
                         {{ post.title | escape }}
                     </a>
                     </h3>
-                    <ul class="tags-list">
-                        {%- for tag in post.tags limit:3 -%}
-                            <li><a href="/notes#{{ tag }}">{{ tag }}</a></li>
-                        {%- endfor -%}
-                    </ul>
+                    
                     <hr style="margin-bottom: 0px">
                 </li>
                 {%- endfor -%}
@@ -55,7 +59,7 @@ extra_stylesheet: "/assets/css/home.css"
         </div>
     </div>
 
-    <h3>Explore topics</h3>
+    <h3>&#9733; Explore topics</h3>
     <ul class="tags-list">
         {%- for tag in site.tags -%}
             <li>

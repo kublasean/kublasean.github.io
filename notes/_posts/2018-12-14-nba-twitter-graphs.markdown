@@ -17,7 +17,7 @@ Twitter already has a Python wrapper for its Application Protocol Interface (API
 responses ourselves. We can let the wrapper do that for us. We will have to create app-credentials through Twitter in order to use the API however. Follow [python-twitter's docs](https://python-twitter.readthedocs.io/en/latest/getting_started.html) in order to do so. All you need is a Twitter account, no 
 special privileges necessary.
 
-With credentials in hand we can create an instace of the Twitter API.
+With credentials in hand we can create an instance of the Twitter API.
 {% highlight python %}
 import twitter
 
@@ -30,7 +30,7 @@ api.sleep_on_rate_limit = True
 {% endhighlight %}
 
 I am an NBA fan so the graphs I was interested in creating were of player-to-player connections on Twitter. This is a fun dataset because the league has 
-a very active social media presences. There are also easily obtainable attributes per player, such as contract size, team, and position. You could follow 
+a very active social media presence. There are also easily obtainable attributes per player, such as contract size, team, and position. You could follow 
 the same steps for whatever group of Twitter users you're interested in, whether it be celebrity chefs, musical artists, or meme account reply-guys. 
 
 There are 30 NBA teams with around 15 players each. I wasn't keen on manually looking up 450 Twitter handles to feed them into the API, espescially if I could do it programmatically. [Basketball-reference.com](https://www.basketball-reference.com/contracts/) came to my rescue, where I found a table of all the current players under contract.
@@ -61,7 +61,7 @@ for i in range(len(queries)):
     V.append(row)
 {% endhighlight %}
 
-After that processessing V is a list-of-lists, which I dumped as a Comma Separated Value (CSV) file with the following columns:
+After that processessing `V` is a list-of-lists, which I dumped as a Comma Separated Value (CSV) file with the following columns:
 
 | TWITTER_ID | USER_NAME     | SCREEN_NAME    | TEAM |
 | ---------- | ------------- | -------------- | ---- |
@@ -131,7 +131,7 @@ The `.vs` member of the graph associates an attribute with the vertices, mapped 
 
 ![foo](/projects/assets/img/nba_twitter_straight_graph.png "The graph with some more sane styling")
 
-This looks a lot better. However, one of my initial goals for the viz was to efficiently communicate what a follow was versus a follow-and-a-follow-back. 
+This looks a lot better. However, one of my initial goals for the visualization was to efficiently communicate what a follow was versus a follow-and-a-follow-back. 
 With igraph it is easy to iterate over edges and detect these two cases, and style them accordingly. 
 
 {% highlight python %}

@@ -1,11 +1,46 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
+#
 ---
 
 @import "minima";
 
-hr {
+hr.big-pad {
+    margin-top: $spacing-unit;
     margin-bottom: $spacing-unit;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%
+}
+
+a.post-link {
+    color: $text-color;
+}
+
+.post-pitch {
+    color: $grey-color;
+    margin-bottom: $spacing-unit;
+}
+
+.home-thumb {
+    object-fit: cover;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid $grey-color;
+
+    margin-top: $spacing-unit / 3;
+    margin-bottom: $spacing-unit / 3;
+}
+
+.home-notes-list li {
+    margin-bottom: $spacing-unit / 2;
+}
+
+hr {
+    margin-bottom: $spacing-unit / 2;
+    border: none;
+    background-color: $grey-color-light;
+    height: 1px;
 }
 
 .post-meta .related-tag {
@@ -87,12 +122,6 @@ hr {
     width: 100%;
     height: 100px;
     border-left: 5px solid $grey-color-light;
-}
-
-.home-thumb {
-    object-fit: cover;
-    width: 100%;
-    border: 2px solid $text-color;
 }
 
 .row {
