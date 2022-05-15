@@ -36,6 +36,6 @@ Adding user sean to group vboxsf
 Done.
 ```
 
-Now reboot your VM. After restarting you should be able to view views in the shared folder without having to change to *root*
+Now reboot your VM. After restarting you should be able to view the contents of your shared folder without having to change to *root*
 
  ![viewing-new-folder](/notes/img/virtualbox_sharedfolder_04.PNG)

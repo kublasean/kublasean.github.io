@@ -4,8 +4,8 @@ title: "Painless Static Website Hosting with Github Pages and Jekyll"
 tags: Jekyll
 ---
 
-Github pages is a great (and free!) way to set up a static website for your portfolio or blog. You can configure 
-to host any static content, but generating that content is up to you. That being said, it does have built-in integration with Jekyll and I think that is a great place to get started.
+Github pages is a great (and free!) way to set up a static website for your portfolio or blog. You can configure it
+to host any static content, but generating that content is up to you. That being said, Github pages has built-in integration with Jekyll.
 
 Jekyll allows you to create reusable HTML components that are processed and turned into static content. Similar to PHP you can intersperse a scripting language, Liquid, with HTML. The difference being the processing happens once when Github receives a new code commit, rather than every time a client requests a page. When you are developing locally the processing happens when a watchdog sees that a file has been edited. 
 
@@ -14,16 +14,16 @@ Jekyll allows you to create reusable HTML components that are processed and turn
 In order to preview how your static site will look before unveiling it to the wider world you should setup a local development environment. 
 It will allow you to work much faster, and catch any glaring mistakes before they are published. 
 
-The easiest way to use Jekyll is in a Linux environment. If you have a Linux system already, congrats you can skip step 0. If you have a Windows machine, you'll want to use a Virtual Machine or look into using Linux subsystem for Windows. 
+The easiest way to use Jekyll is in a Linux environment. If you have a Linux system already skip to step 1. If you have a Windows machine, you'll want to use a Virtual Machine or look into using Linux subsystem for Windows. 
 
-There is apparently an unoffocial way to use Jekyll on Windows natively, but I have not tried it. Also, sorry MacOs users but I have not figured out the MacOs workflow just yet. Look out for another post later on that. 
+There is apparently an unoffocial way to use Jekyll on Windows natively, but I have not tried it. Nor have I tried to figure out MacOs Jekyll workflow just yet. 
 
-## 0. Setup a Ubuntu 20.4 Virtual Machine (Windows Host) 
-* download [official release](https://releases.ubuntu.com/20.04/) .iso file
-* download [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-* setup your Virtual Machine (VM) following [Ubuntu's guide](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
+## 0. Setup a Ubuntu 20.04 Virtual Machine (Windows Host) 
+* Download [Ubuntu 20.04 desktop official release](https://releases.ubuntu.com/20.04/) .iso file
+* Download [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+* Setup your Virtual Machine (VM) following [Ubuntu's guide](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview) for usage with VirtualBox
 
-The following steps will be for *inside* your Linux environment
+The following steps will be for *inside* your Linux environment.
 
 ---
 
@@ -52,7 +52,7 @@ rvm 1.29.12 (manual) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://
 ```
 
 #### 1.1.2 Use RVM to install needed ruby
-Find ruby version known to RVM that is closest to needed version
+Find a ruby version known to RVM that is closest to the needed version
 ```
 rvm list known
 
@@ -94,13 +94,14 @@ bundle -v
 Output:
 Bundler version 2.3.12
 ```
-Note: confusingly, you can use `bundle` and `bundler` interchangeably. For example:
+Note: confusingly, you can use `bundle` and `bundler` commands interchangeably. For example:
 ```
 bundler -v
 
 Output:
 Bundler version 2.3.12
 ```
+I will be using `bundle` since it is one less letter to type
 ### 1.3 Install Github Pages Gem
 Navigate to where you want your site to be built. I simply used the top-level directory of my Github repository for the project. Then run `bundle init`
 ```
@@ -126,7 +127,7 @@ New jekyll site installed in /home/sean/Projects/kublasean.github.io
 Bundle install skipped. 
 ```
 
-* `bundle exec` is a prefix that uses bundler to run the version of jekyll from our Gemfile (as opposed to say, a system jekyll installation)
+* `bundle exec` is a prefix that uses bundler to run the version of Jekyll from our Gemfile (as opposed to say, a system Jekyll installation)
 * `jekyll new` is the command to build our site scaffold
 * The `--force` flag is necessary because we are running `jekyll new` in a directory that already exists (the current directory indicated by the period)
 
@@ -137,7 +138,7 @@ ls
 Output: 
 404.html  about.md  _config.yml  Gemfile  Gemfile.lock  index.md  LICENSE  _posts
 ```
-This is the beginning of your new website, congrats!!! Take a look [here](https://jekyllrb.com/docs/structure/) briefly to get a basic understand of the newly generated files and directories
+This is the skeleton of your new website, congrats!!! Take a look [here](https://jekyllrb.com/docs/structure/) briefly to get a basic understanding of the newly generated files and directories
 
 References:
 * [using jekyll with bundler](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/)
@@ -162,9 +163,9 @@ Configuration file: /home/sean/Projects/kublasean.github.io/_config.yml
     Server address: http://127.0.0.1:4000/
   Server running... press ctrl-c to stop.
 ```
-Ctrl-click that link and you should be taken to the home page for your site. Cool!
+Ctrl-click that link and you should be taken to the home page for your site. Cool!!!!
 
-As you make changes to your jekyll scaffolding the relevant pages will be re-loaded as long as that process is running in the terminal
+As you make changes to your Jekyll scaffolding the relevant pages will be re-loaded as long as that process is running in the terminal
 
 Note: you DO have to restart the server (cntrl-c and re-run `jekyll serve`) after modifying the _config.yml file
 
