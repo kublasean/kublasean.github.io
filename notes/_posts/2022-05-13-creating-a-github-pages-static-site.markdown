@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Creating a Github Pages Static Website Using Jekyll"
-tags: jekyll
+title: "Painless Static Website Hosting with Github Pages and Jekyll"
+tags: Jekyll
 ---
 
 Github pages is a great (and free!) way to set up a static website for your portfolio or blog. You can configure 
