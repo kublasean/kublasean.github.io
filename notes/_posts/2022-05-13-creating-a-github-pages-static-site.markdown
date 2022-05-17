@@ -16,23 +16,23 @@ It will allow you to work much faster, and catch any glaring mistakes before the
 
 The easiest way to use Jekyll is in a Linux environment. If you have a Linux system already skip to step 1. If you have a Windows machine, you'll want to use a Virtual Machine or look into using Linux subsystem for Windows. 
 
-There is apparently an unoffocial way to use Jekyll on Windows natively, but I have not tried it. Nor have I tried to figure out MacOs Jekyll workflow just yet. 
+There is apparently an unoffocial way to use Jekyll on Windows natively, but I have not tried it. Mac users can enjoy a Linux-like terminal built in, so I will include steps for that as well. 
 
 ## 0. Setup a Ubuntu 20.04 Virtual Machine (Windows Host) 
 * Download [Ubuntu 20.04 desktop official release](https://releases.ubuntu.com/20.04/) .iso file
 * Download [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 * Setup your Virtual Machine (VM) following [Ubuntu's guide](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview) for usage with VirtualBox
 
-The following steps will be for *inside* your Linux environment.
+The following steps will be for *inside* a Linux environment or in your MacOs terminal
 
 ---
 
-## 1 Setup (Linux)
+## 1 Setup (Linux or MacOs)
 
 Github has created a *gem*, a *ruby* package, that will take care of installing the correct version of Jekyll that Github Pages uses. You want to be using the 
 same version so that your local development preview will match what Github serves once your code is committed and processed
 
-### 1.1 Install Ruby
+### 1.1 Install Ruby (Linux)
 
 To install the Github pages *gem* we need to use the right *ruby* version. At the following page find the needed *ruby* version
 
@@ -42,7 +42,7 @@ At the time of writing this was *ruby 2.7.3*
 
 Since we have to install a specific *ruby* version we need Ruby Version Manager (RVM), which will handle the *ruby* installation and allow multiple versions of *ruby* to co-exist on your Linux system
 
-#### 1.1.1 Install RVM
+#### 1.1.1 Install RVM (Linux)
 Please follow [https://github.com/rvm/ubuntu_rvm](https://github.com/rvm/ubuntu_rvm) in order to install RVM. The following shows the RVM version I used
 ```
 rvm -v
@@ -51,7 +51,7 @@ Output:
 rvm 1.29.12 (manual) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 ```
 
-#### 1.1.2 Use RVM to install needed ruby
+#### 1.1.2 Use RVM to install needed ruby (Linux)
 Find a ruby version known to RVM that is closest to the needed version
 ```
 rvm list known
@@ -85,7 +85,119 @@ Output:
 ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-linux]
 ```
 
-### 1.2 Install bundler 
+### 1.1 Install Ruby (MacOs)
+If you are a Mac user, I found *ruby-install* combined with *chruby* to be a little easier to install/manage ruby. You will need [Homebrew](https://brew.sh/) in order to do this. Check your brew installation with:
+
+```
+brew -v
+
+Output: 
+Homebrew 3.4.11
+Homebrew/homebrew-core (git revision 35b894d9c54; last commit 2022-05-17)
+```
+
+First of all, your Mac probably already has a system ruby installed so check the version with:
+```
+ruby -v
+
+Output:
+ruby 2.6.8p205 (2021-07-07 revision 67951) [universal.x86_64-darwin21]
+```
+Unfortunately, this is not the version required by Github. Check [here](https://pages.github.com/versions/) for that version. At the time of writing this was 2.7.3. Otherwise you could stop here and skip to step 1.2
+
+#### 1.1.1 Install [chruby](https://github.com/postmodern/chruby#readme) (MacOs)
+```
+brew install chruby
+
+Output:
+(Installation stuff...)
+Add the following to the ~/.bash_profile or ~/.zshrc file:
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+(...More installation stuff...)
+```
+Notice the line from the output that instructs us to add a line to "~/.bash_profile" or "~/.zshrc." Let's do so. For newer Macs the terminal is [ZSH](https://apple.stackexchange.com/questions/388622/zsh-zprofile-zshrc-zlogin-what-goes-where), so you'll want to use "~/.zshrc." The following will create the file if it doesn't exist, or append to it
+```
+echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
+cat ~/.zshrc
+
+Output:
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+```
+Now restart your terminal by closing it and re-opening it and check that chruby exists
+```
+chruby --version
+
+Output:
+chruby: 0.3.9
+```
+#### 1.1.2 Install [ruby-install](https://github.com/postmodern/ruby-install#readme) (MacOs)
+```
+brew install ruby-install
+ruby-install --version
+
+Output:
+ruby-install: 0.8.3
+```
+#### 1.1.3 Install ruby version using ruby-install (MacOs)
+List available ruby versions
+```
+ruby-install 
+
+Output:
+Stable ruby versions:
+  ruby:
+    2.6.10
+    2.7.6
+    3.0.4
+    3.1.2
+  jruby:
+    9.3.4.0
+  rbx:
+    5.0
+  truffleruby:
+    22.1.0
+  truffleruby-graalvm:
+    22.1.0
+  mruby:
+    3.0.0
+```
+Closest to 2.7.3 seems to be 2.7.6, so I will install that. This might take a minute if it requires compiling from source, which happened in my case
+```
+ruby-install 2.7.6
+
+Output:
+(Lots of downloading and compiling...)
+>>> Successfully installed ruby 2.7.6 into /Users/sean/.rubies/ruby-2.7.6
+```
+Now we will use *chruby* to switch from the system *ruby* to the one we just downloaded. First you must restart your terminal in order for *chruby* to detect the newly downloaded version. Then list available rubies with:
+```
+chruby
+
+Output:
+   ruby-2.7.6
+```
+Now change to the new ruby version, you can leave off the "ruby-" prefix if you like
+```
+chruby 2.7.6
+```
+Run `chruby` again and you'll see that you have switched to your new version, indicated by the "*"
+```
+chruby
+
+Output:
+ * ruby-2.7.6
+```
+You can also `ruby -v` to confirm that your terminal environment has switched
+```
+ruby -v
+
+Output:
+ruby 2.7.6p219 (2022-04-12 revision c9c2245c0a) [x86_64-darwin21]
+```
+This will last while you keep your terminal open, you'll need to setup [auto-switching](https://github.com/postmodern/chruby#auto-switching) if you want to automatically switch to a version when you open a new terminal or navigate to a project directory. Otherwise when you restart your terminal you'll need to run `chruby 2.7.6` again
+
+The following steps assume you have switched to the ruby version you need in your terminal
+### 1.2 Install bundler (Linux or MacOs)
 Github recommends that you use [bundler](https://bundler.io/) to install Jekyll, so we'll have to do that first
 ```
 gem install bundler
@@ -102,7 +214,7 @@ Output:
 Bundler version 2.3.12
 ```
 I will be using `bundle` since it is one less letter to type
-### 1.3 Install Github Pages Gem
+### 1.3 Install Github Pages Gem (Linux or MacOs)
 Navigate to where you want your site to be built. I simply used the top-level directory of my Github repository for the project. Then run `bundle init`
 ```
 cd ~/Projects/kublasean.github.io           <---my github repo for the site
@@ -117,7 +229,7 @@ Replace "226" with the latest github-pages version from [the github pages depend
 bundle install 
 ```
 
-### 1.4 Create Jekyll Scaffold
+### 1.4 Create Jekyll Scaffold (Linux or MacOs)
 We have installed the exact Jekyll version we need. Now we can use it to create the static site scaffolding using the `jekyll new` command 
 ```
 bundle exec jekyll new --force .
@@ -146,7 +258,7 @@ References:
 
 ---
 
-## 2 Development Cycle
+## 2 Development Cycle (Linux or MacOs)
 If you have set everything up correctly you should now be able to locally host your new static website with `jekyll serve`. Run this in the top-level directory of your site
 ```
 bundle exec jekyll serve
@@ -171,7 +283,7 @@ Note: you DO have to restart the server (cntrl-c and re-run `jekyll serve`) afte
 
 ---
 
-## 3 Deployment
+## 3 Deployment (Linux or MacOs)
 If you are like me, and want to serve the site from the root of the master branch, all you have to do is a normal `git commit` and `git push` whenever you're ready to publish changes to the world-at-large
 
 Take a look [here](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) for more info on using an alternate branch or sub-directory in your repo
